@@ -1,18 +1,19 @@
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import ProductGrid from './components/ProductGrid';
-import About from './components/About';
-import Footer from './components/Footer';
+import React from 'react';
+import Navbar from './components/Navbar.jsx';
+import Hero from './components/Hero.jsx';
+import ProductGrid from './components/ProductGrid.jsx';
+import Footer from './components/Footer.jsx';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-rose-50 text-gray-900">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-white via-slate-50 to-white text-slate-900">
       <Navbar />
-      <main>
+
+      <main className="flex-1">
         <Hero />
         <ProductGrid />
-        <About />
       </main>
+
       <Footer />
     </div>
   );

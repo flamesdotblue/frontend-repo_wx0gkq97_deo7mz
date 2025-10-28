@@ -1,44 +1,61 @@
-import { ShoppingBag, Menu } from 'lucide-react';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { ShoppingBag, Menu, X } from 'lucide-react';
+
+const NavLink = ({ children, href }) => (
+  <a
+    href={href}
+    className="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition"
+  >
+    {children}
+  </a>
+);
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/60 bg-white/80 border-b border-black/5">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <a href="#home" className="flex items-center gap-2 group">
-          <div className="p-2 rounded-lg bg-gradient-to-br from-rose-500 to-fuchsia-600 text-white shadow-lg shadow-rose-500/20">
-            <ShoppingBag size={20} />
+    <header className="sticky top-0 z-50 w-full backdrop-blur bg-white/70 border-b border-slate-200/60">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between">
+          <a href="/" className="flex items-center gap-2">
+            <span className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-slate-900 text-white">
+              <ShoppingBag size={18} />
+            </span>
+            <span className="text-base sm:text-lg font-semibold tracking-tight">Bag o Bags</span>
+          </a>
+
+          <nav className="hidden md:flex items-center gap-1">
+            <NavLink href="#products">Products</NavLink>
+            <NavLink href="#about">About</NavLink>
+            <NavLink href="#contact">Contact</NavLink>
+          </nav>
+
+          <div className="flex items-center gap-3">
+            <a
+              href="#cart"
+              className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-slate-900 text-white text-sm font-medium hover:bg-slate-800 transition"
+            >
+              <ShoppingBag size={16} />
+              <span>Cart</span>
+            </a>
+            <button
+              className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-md hover:bg-slate-100"
+              aria-label="Toggle menu"
+              onClick={() => setOpen((v) => !v)}
+            >
+              {open ? <X size={20} /> : <Menu size={20} />}
+            </button>
           </div>
-          <span className="text-lg font-semibold tracking-tight">Bag o Bags</span>
-        </a>
-
-        <nav className="hidden md:flex items-center gap-8 text-sm">
-          <a href="#collections" className="text-gray-700 hover:text-gray-900 transition">Collections</a>
-          <a href="#featured" className="text-gray-700 hover:text-gray-900 transition">Featured</a>
-          <a href="#about" className="text-gray-700 hover:text-gray-900 transition">About</a>
-          <a href="#contact" className="text-gray-700 hover:text-gray-900 transition">Contact</a>
-        </nav>
-
-        <div className="flex items-center gap-3">
-          <button className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-md bg-black text-white text-sm font-medium hover:bg-gray-900 transition">
-            <ShoppingBag size={16} />
-            Shop now
-          </button>
-          <button className="md:hidden p-2 rounded-md hover:bg-black/5" aria-label="Toggle menu" onClick={() => setOpen(!open)}>
-            <Menu />
-          </button>
         </div>
       </div>
 
+      {/* Mobile menu */}
       {open && (
-        <div className="md:hidden border-t border-black/5 bg-white/90 backdrop-blur">
-          <div className="px-4 py-3 flex flex-col gap-2">
-            <a href="#collections" className="py-2">Collections</a>
-            <a href="#featured" className="py-2">Featured</a>
-            <a href="#about" className="py-2">About</a>
-            <a href="#contact" className="py-2">Contact</a>
+        <div className="md:hidden border-t border-slate-200 bg-white">
+          <div className="px-4 py-3 space-y-1">
+            <a href="#products" className="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-100">Products</a>
+            <a href="#about" className="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-100">About</a>
+            <a href="#contact" className="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-100">Contact</a>
           </div>
         </div>
       )}
