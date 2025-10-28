@@ -46,7 +46,7 @@ export default function ProductGrid() {
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Featured collection</h2>
             <p className="text-gray-600 mt-2">Handpicked styles loved by our community</p>
           </div>
-          <a href="#" className="hidden sm:inline-flex text-sm font-medium text-rose-600 hover:text-rose-700">View all</a>
+          <a href="#collections" className="hidden sm:inline-flex text-sm font-medium text-rose-600 hover:text-rose-700">View all</a>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
